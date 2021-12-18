@@ -51,6 +51,12 @@ else{
 
 
 
+app.get('/apiKeys', (req, res)=>{
+    let rawdata = fs.readFileSync('apikeys.json');
+    let apikeys = JSON.parse(rawdata);
+    console.log('grbz grbz');
+    res.send(apikeys)
+})
 
 app.get('/whitelisted', (req, res)=>{
     let rawdata = fs.readFileSync('whitelisted.json');
