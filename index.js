@@ -58,13 +58,19 @@ app.get('/whitelisted', (req, res)=>{
     res.send(members)
 })
 
+app.get('/apiKeys', (req, res)=>{
+    let rawdata = fs.readFileSync('apikeys.json');
+    let apikeys = JSON.parse(rawdata);
+    res.send(apikeys)
+})
+
 app.get('/whitelisted/member/:address', (req, res, value) => {
     let sent = false;
     let rawdata = fs.readFileSync('whitelisted.json');
     let members = JSON.parse(rawdata);
     const user = members.find(c => c.member == req.params.address)
     if(!user){
-        res.status(404).send("the member was not found");
+        res.status(404).send(false);//bulanamadı Mesaj
     }
     res.send(user);
 })
